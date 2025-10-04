@@ -1,16 +1,28 @@
+/*
+  - to use the code just change the passed graph to the startBruteForce function to the desired one
+  - also should consider changing totalPaths exist in your graph  
+ */
+
+// Solvable graph
 Map<String, List<String>> graph2 = {
   "a": ["b", "c"],
   "b": ["a", "c"],
   "c": ["a", "b"],
 };
 
+// Unsolvable graph
 final Map<String, List<String>> graph = {
   'a': ['b', 'b', 'd'],
   'b': ['a', 'a', 'c', 'c', 'd'],
   'c': ['b', 'b', 'd'],
   'd': ['a', 'b', 'c'],
 };
-final int totalEdges = 3;
+
+/*
+  add more graphs if you want to, and just follow the instructions above to test them
+*/
+
+final int totalPaths = 7; // Total number of paths we must walk through
 
 bool checker(
   String current,
@@ -18,7 +30,7 @@ bool checker(
   Map<String, List<String>> adj,
   List<String> path,
 ) {
-  if (used == totalEdges) return true;
+  if (used == totalPaths) return true;
 
   final neighbors = List<String>.from(adj[current]!);
   for (int i = 0; i < neighbors.length; i++) {
@@ -57,4 +69,4 @@ void startBruteForce(Map<String, List<String>> graph) {
   print('No path found after checking every combination.');
 }
 
-void main() => startBruteForce(graph2);
+void main() => startBruteForce(graph);
